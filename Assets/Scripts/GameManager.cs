@@ -173,6 +173,7 @@ public class GameManager : MonoBehaviour
                                 /* 스킬 UI 부분*/
 
                                 skillObj.transform.GetChild(leaderManager.units.IndexOf(lvUnitInfo.gameObject.GetComponent<Unit>()) + 1).transform.GetChild(tempNum).GetChild(0).GetComponent<Text>().text = lvUnitInfo.magicSkill[tempNum] + "Lv : " + lvUnitInfo.skillLev[tempNum];
+
                                 return;
                             }
                             if (lvUnitInfo.skillLev[tempNum] >= 5)
