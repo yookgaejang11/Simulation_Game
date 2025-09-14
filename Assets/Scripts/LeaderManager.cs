@@ -14,7 +14,7 @@ public class LeaderManager : MonoBehaviour
     {
         gameManager = GetComponent<GameManager>();
         cam = GameObject.Find("Main Camera").GetComponent<Cam>();
-        SetPlayerLeader();
+        
     }
 
     // Update is called once per frame
@@ -25,6 +25,7 @@ public class LeaderManager : MonoBehaviour
 
     public void SetPlayerLeader()
     {
+        
         if (units.Count > 0)
         {
             ChangePlayerLeader(currentLeaderIndex);
@@ -32,6 +33,7 @@ public class LeaderManager : MonoBehaviour
         else
         {
             Unit[] temp = GameObject.FindObjectsOfType<Unit>();
+            Debug.Log(temp.Length);
             foreach (Unit unit in temp)
             {
                 units.Add(unit);
@@ -71,7 +73,7 @@ public class LeaderManager : MonoBehaviour
         {
             gameManager = GetComponent<GameManager> ();
         }
-        //gameManager.SetUILeader(currentLeaderIndex, units[currentLeaderIndex].unitInfo);
+        gameManager.SetUILeader(currentLeaderIndex, units[currentLeaderIndex].unitInfo);
         if(currentLeader.GetComponent<LeaderController>() == null)
         {
             currentLeader.gameObject.AddComponent<LeaderController>();

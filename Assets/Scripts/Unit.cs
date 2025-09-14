@@ -44,10 +44,12 @@ public class Unit : MonoBehaviour
         if(DesiredVelocity.sqrMagnitude > 0.01f)
         {
             navMeshAgent.isStopped = false;
+            
             navMeshAgent.SetDestination(DesiredVelocity);
         }
         else
         {
+            
             navMeshAgent.isStopped = true;
         }
     }
@@ -109,19 +111,20 @@ public class Unit : MonoBehaviour
         {
             case Status.Attack:
                 DesiredVelocity = Vector3.zero;
-                //Attack(currentTarget);
+                Attack(currentTarget);
 
                 break;
             case Status.Chase:
                 Vector3 dir = currentTarget.position - transform.position;
                 dir.y = 0;
+
                 if(dir.sqrMagnitude < 0.1f)
                 {
                     DesiredVelocity = Vector3.zero;
                 }
                 else
                 {
-                    DesiredVelocity = dir.normalized * unitInfo.moveSpeed;
+                    DesiredVelocity = currentTarget.position;
                 }
                 break;
             case Status.follow:
@@ -139,6 +142,7 @@ public class Unit : MonoBehaviour
 
     void Attack(Transform target)
     {
+        
         attTimer -= Time.deltaTime;
 
         if(attTimer > 0)
@@ -179,6 +183,8 @@ public class Unit : MonoBehaviour
 
     }
 
+    
+
     public void LvUP()
     {
         if(unitInfo.exp > unitInfo.RequireExp())
@@ -216,7 +222,7 @@ public class Unit : MonoBehaviour
                 leaderManager.units.Remove(this);
                 leaderManager.currentLeaderIndex = 0;
                 leaderManager.ChangePlayerLeader(0);
-                gameManager.SetEnemyLeader();
+                //gameManager.SetEnemyLeader();
             }
             else
             {

@@ -41,6 +41,10 @@ public class UnitInfo : MonoBehaviour
     /// </summary>
     public int[] commonSkill5 = new int[] { 0, 20, 40, 60, 80, 100 };
 
+    public MeleSkill[] meleSkill = new MeleSkill[] { MeleSkill.none, MeleSkill.none, MeleSkill.none, MeleSkill.none };
+    public RangeSkill[] rangeSkill = new RangeSkill[] { RangeSkill.none, RangeSkill.none, RangeSkill.none, RangeSkill.none };
+    public MagicSkill[] magicSkill = new MagicSkill[] { MagicSkill.none, MagicSkill.none, MagicSkill.none, MagicSkill.none };
+
     public Vector3[] formOffset = new Vector3[]
     {
         new Vector3(2.0f, 0, 2.0f),
@@ -75,7 +79,7 @@ public class UnitInfo : MonoBehaviour
     public float cohesionWeight = 1.0f; //대형 Cohesion 가중치
     public float alignmentWeight = 0.5f; // 방향 alignment 가중치
     public float exp = 0;
-
+    public EnemyType enemyType;
 
     public float GetExp(float damage)
     {
@@ -142,15 +146,126 @@ public class UnitInfo : MonoBehaviour
         attackDamage = baseAttackDamage + (curLv * LvUPStatusDamage[(int)_type]);
     }
 
-
-    void Start()
+    public void SetInitEnemyStatus(EnemyType _type)
     {
-        
+        enemyType = _type;
+
+        switch (enemyType)
+        {
+            case EnemyType.mele1:
+                baseHp = 50;
+                maxHp = baseHp;
+                curHp = maxHp;
+                MaxMp = 50;
+                curMp = MaxMp;
+                baseAttackDamage = 10;
+                attackDamage = baseAttackDamage;
+                attackRange = 1.0f;
+                criticalRate = 0.1f;
+                exp = 100;
+                break;
+            case EnemyType.mele2:
+                baseHp = 80;
+                maxHp = baseHp;
+                curHp = maxHp;
+                MaxMp = 70;
+                curMp = MaxMp;
+                baseAttackDamage = 15;
+                attackDamage = baseAttackDamage;
+                attackRange = 3.0f;
+                criticalRate = 0.2f;
+                exp = 100;
+                break;
+            case EnemyType.mele3:
+                baseHp = 70;
+                maxHp = baseHp;
+                curHp = maxHp;
+                MaxMp = 150;
+                curMp = MaxMp;
+                baseAttackDamage = 10;
+                attackDamage = baseAttackDamage;
+                attackRange = 3.0f;
+                criticalRate = 0f;
+                exp = 100;
+                break;
+            case EnemyType.range1:
+                baseHp = 80;
+                maxHp = baseHp;
+                curHp = maxHp;
+                MaxMp = 70;
+                curMp = MaxMp;
+                baseAttackDamage = 15;
+                attackDamage = baseAttackDamage;
+                attackRange = 3.0f;
+                criticalRate = 0.2f;
+                exp = 100;
+                break;
+            case EnemyType.range2:
+                baseHp = 80;
+                maxHp = baseHp;
+                curHp = maxHp;
+                MaxMp = 70;
+                curMp = MaxMp;
+                baseAttackDamage = 15;
+                attackDamage = baseAttackDamage;
+                attackRange = 3.0f;
+                criticalRate = 0.2f;
+                exp = 120;
+                break;
+            case EnemyType.range3:
+                baseHp = 80;
+                maxHp = baseHp;
+                curHp = maxHp;
+                MaxMp = 70;
+                curMp = MaxMp;
+                baseAttackDamage = 15;
+                attackDamage = baseAttackDamage;
+                attackRange = 3.0f;
+                criticalRate = 0.2f;
+                exp = 120;
+                break;
+            case EnemyType.boss1:
+                baseHp = 80;
+                maxHp = baseHp;
+                curHp = maxHp;
+                MaxMp = 70;
+                curMp = MaxMp;
+                baseAttackDamage = 15;
+                attackDamage = baseAttackDamage;
+                attackRange = 3.0f;
+                criticalRate = 0.2f;
+                exp = 120;
+                break;
+            case EnemyType.boss2:
+                baseHp = 80;
+                maxHp = baseHp;
+                curHp = maxHp;
+                MaxMp = 70;
+                curMp = MaxMp;
+                baseAttackDamage = 15;
+                attackDamage = baseAttackDamage;
+                attackRange = 3.0f;
+                criticalRate = 0.2f;
+                exp = 120;
+                break;
+            case EnemyType.boss3:
+                baseHp = 80;
+                maxHp = baseHp;
+                curHp = maxHp;
+                MaxMp = 70;
+                curMp = MaxMp;
+                baseAttackDamage = 15;
+                attackDamage = baseAttackDamage;
+                attackRange = 3.0f;
+                criticalRate = 0.2f;
+                exp = 120;
+                break;
+        }
+        maxHp = baseHp + (curLv * LvUPStatusDamage[(int)_type]);
+        curHp = maxHp;
+        curMp = MaxMp;
+        attackDamage = baseAttackDamage + (curLv * LvUPStatusDamage[(int)_type]);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
